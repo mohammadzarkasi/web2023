@@ -14,14 +14,14 @@
     <div class="row form-group mb-4">
         <label class="col-lg-1">NIM</label>
         <div class="col-lg-4">
-            <input type="text" readonly class="form-control" name="nim" placeholder="NIM" value="{{ $mhs->nim ?? '' }}" />
+            <input type="text" readonly class="form-control" name="nim" placeholder="NIM" value="{{ $item->nim ?? '' }}" />
         </div>
     </div>
 
     <div class="row form-group mb-4">
         <label class="col-lg-1">Nama</label>
         <div class="col-lg-4">
-            <input type="text" readonly class="form-control" name="nama" placeholder="Nama Mahasiswa" value="{{ $mhs->nama ?? '' }}" />
+            <input type="text" readonly class="form-control" name="nama" placeholder="Nama Mahasiswa" value="{{ $item->nama ?? '' }}" />
         </div>
     </div>
 
@@ -30,6 +30,24 @@
             <a href="{{ url('/mahasiswa') }}" class="btn btn-secondary">Kembali</a>
 
         </div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Kode Matkul</th>
+                <th>Nama Matkul</th>
+            </tr>
+            @foreach ($item->mengambilMatkuls as $pesertaMatkul)
+                <tr>
+                    <td>{{ $pesertaMatkul->matkul->kode_mata_kuliah }}</td>
+                    <td>{{ $pesertaMatkul->matkul->nama_mata_kuliah }}</td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 </div>
 

@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(MatkulSeeder::class);
         $this->call(mhs_seeder::class);
+        $this->call(PesertaMatkulSeeder::class);
     }
 }

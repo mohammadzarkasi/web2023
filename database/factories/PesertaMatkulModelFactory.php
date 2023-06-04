@@ -2,12 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\MhsModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class mhs_factoryFactory extends Factory
+class PesertaMatkulModelFactory extends Factory
 {
-    protected $model = MhsModel::class;
     /**
      * Define the model's default state.
      *
@@ -16,7 +14,8 @@ class mhs_factoryFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => $this->faker->text(20),
+            'id_mahasiswa' => rand(1, 50),
+            'id_mata_kuliah' => rand(1,50),
         ];
     }
 }

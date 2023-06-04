@@ -9,4 +9,9 @@ class MhsModel extends Model
 {
     use HasFactory;
     protected $table = 'mhs';
+
+    public function mengambilMatkuls()
+    {
+        return $this->hasMany(PesertaMatkulModel::class, 'id_mahasiswa');
+    }
 }
