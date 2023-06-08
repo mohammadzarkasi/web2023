@@ -17,28 +17,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'try_login']);
+Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [LoginController::class, 'daftar']);
+Route::post('/register/simpan', [LoginController::class, 'simpan_register']);
 
 
 Route::get('/uji', function () {
     return 'ini adalah route "uji"';
 });
 
-
-Route::get('/login', [LoginController::class, 'index']);
-
-Route::get('/mahasiswa', [MahasiswaController::class, 'page_index']);
-Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'page_tambah']);
-Route::get('/mahasiswa/edit', [MahasiswaController::class, 'page_edit']);
-Route::get('/mahasiswa/detail', [MahasiswaController::class, 'page_detail']);
-Route::get('/mahasiswa/hapus', [MahasiswaController::class, 'hapus']);
-Route::post('/mahasiswa/simpan', [MahasiswaController::class, 'simpan']);
-Route::post('/mahasiswa/update', [MahasiswaController::class, 'update']);
+Route::group(['middleware' => ['login-check']], function () {
+    Route::get('/mahasiswa', [MahasiswaController::class, 'page_index']);
+    Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'page_tambah']);
+    Route::get('/mahasiswa/edit', [MahasiswaController::class, 'page_edit']);
+    Route::get('/mahasiswa/detail', [MahasiswaController::class, 'page_detail']);
+    Route::get('/mahasiswa/hapus', [MahasiswaController::class, 'hapus']);
+    Route::post('/mahasiswa/simpan', [MahasiswaController::class, 'simpan']);
+    Route::post('/mahasiswa/update', [MahasiswaController::class, 'update']);
 
 
-Route::get('/matkul', [MatkulController::class, 'index']);
-Route::get('/peserta', [PesertaMatkulController::class, 'index']);
-Route::get('/peserta/tambah', [PesertaMatkulController::class, 'page_tambah']);
-Route::post('/peserta/simpan', [PesertaMatkulController::class, 'simpan']);
+    Route::get('/matkul', [MatkulController::class, 'index']);
+    Route::get('/peserta', [PesertaMatkulController::class, 'index']);
+    Route::get('/peserta/tambah', [PesertaMatkulController::class, 'page_tambah']);
+    Route::post('/peserta/simpan', [PesertaMatkulController::class, 'simpan']);
+});

@@ -13,6 +13,9 @@ class MahasiswaController extends Controller
 {
     public function page_index(Request $req)
     {
+        // if($req->session()->has('login') == true && $req->session()->get('login')=='1'){
+
+        // }
 
         // membaca semua baris dari tabel mahasiswa
         // select * from mhs order by nim
@@ -26,6 +29,7 @@ class MahasiswaController extends Controller
 
         return view('mahasiswa.index', [
             'list_mhs' => $list_mhs,
+            'add_count' => $req->session()->get('mahasiswa-add-count', 1),
         ]);
     }
 
@@ -57,7 +61,7 @@ class MahasiswaController extends Controller
 
     public function page_detail(Request $req)
     {
-        
+
         $id = intval($req->input('id'));
 
         // $mhs = DB::table('mhs')
@@ -70,7 +74,7 @@ class MahasiswaController extends Controller
 
         $mhs = MhsModel::find($id);
 
-        
+
         return view('mahasiswa.detail', [
             'item' => $mhs,
         ]);
@@ -91,6 +95,7 @@ class MahasiswaController extends Controller
             // lakukan sesuatu jika gagak insert
         }
 
+        $req->session()->put('mahasiswa-add-count', $req->session()->get('mahasiswa-add-count', 1) + 1);
         // echo 'berhasil disimpan';
         return redirect('/mahasiswa');
     }

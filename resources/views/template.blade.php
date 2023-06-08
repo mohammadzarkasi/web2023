@@ -9,8 +9,11 @@
     <body>
         <header class="navbar navbar-dark sticky-top bg-dark shadow">
             <span class="text-light col-md-3 col-lg-2 px-3">Pemrograman Website 2023</span>
-            <div class="col-md-9 col-lg-10">
-                
+            <div class="col-md-9 col-lg-10 text-light">
+                @if (Session::has('login') == true && Session::get('login') == '1')
+                    <span>Halo, {{ Session::get('name') }}</span>
+                    <a href="{{ url('/logout') }}">Keluar</a>
+                @endif
             </div>
         </header>
 

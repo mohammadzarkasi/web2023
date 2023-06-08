@@ -16,8 +16,8 @@ class CreateMhs extends Migration
         Schema::create('mhs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nim', 20);
-            $table->string('nama', 20);
+            $table->string('nim', 100);
+            $table->string('nama', 100);
         });
     }
 

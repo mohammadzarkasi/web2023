@@ -3,7 +3,7 @@
 {{-- ctrl shif i, alt shif f --}}
 @section('main-content')
   <div class="d-flex justify-content-between flex-warp flex-md-nowarp align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1>Mahasiswa</h1>
+    <h1>Mahasiswa {{ $add_count }}</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <a href="{{ url('/mahasiswa/tambah') }}" class="btn btn-primary">Tambah</a>
     </div>
